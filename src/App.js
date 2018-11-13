@@ -32,7 +32,13 @@ class App extends Component {
                     in={this.state.showBlock}
                     timeout={1000}
                     mountOnEnter
-                    unmountOnExit>
+                    unmountOnExit
+                    onEnter={() => console.log('on Enter')}
+                    onEntering={() => console.log('on Entering')}
+                    onEntered={() => console.log('on Entered')}
+                    onExit={() => console.log('on Exit')}
+                    onExiting={() => console.log('on Exiting')}
+                    onExited={() => console.log('on Exited')}>
                     {state => (
                         <div style={{
                             backgroundColor: 'red',
@@ -44,15 +50,8 @@ class App extends Component {
                         }}/>
                     )}
                 </Transition>
-                <Transition in={this.state.modalIsOpen}
-                            timeout={300}
-                            mountOnEnter
-                            unmountOnExit>
-                    {state => (
-                        <Modal show={state} closed={this.closeModal}/>
-                    )}
-                </Transition>
-                <Backdrop show={this.state.modalIsOpen} />
+                <Modal show={this.state.modalIsOpen} closed={this.closeModal}/>
+                <Backdrop show={this.state.modalIsOpen}/>
                 <button className="Button" onClick={this.showModal}>Open Modal</button>
                 <h3>Animating Lists</h3>
                 <List/>
